@@ -31,8 +31,8 @@ pipeline {
                     def TOMCAT_WEBAPPS = "/opt/tomcat/webapps/ROOT"
 
                     sh """
-                    rm -rf $TOMCAT_WEBAPPS/*
-                    cp -r dist/angular-app/* $TOMCAT_WEBAPPS/
+                    sudo rm -rf $TOMCAT_WEBAPPS/*
+                    sudo cp -r dist/angular-app/* $TOMCAT_WEBAPPS/
                     """
                 }
             }
