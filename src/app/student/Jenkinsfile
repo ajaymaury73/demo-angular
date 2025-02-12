@@ -1,0 +1,50 @@
+pipeline {
+    agent any
+
+    environment {
+        NODE_HOME = tool 'NodeJS'
+        PATH = "${NODE_HOME}/bin:${env.PATH}"
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/ajaymaury73/demo-angular.git'
+            }
+        }
+        
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+        
+        stage('Build Angular') {
+            steps {
+                sh 'ng build --configuration=production'
+            }
+        }
+        
+        stage('Deploy to Tomcat') {
+            steps {
+                script {
+                    def TOMCAT_WEBAPPS = "/opt/tomcat/webapps/ROOT"
+
+                    sh """
+                    rm -rf $TOMCAT_WEBAPPS/*
+                    cp -r dist/angular-app/* $TOMCAT_WEBAPPS/
+                    """
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Deployment Successful! Access your app at http://localhost:8085/'
+        }
+        failure {
+            echo 'Deployment Failed!'
+        }
+    }
+}
