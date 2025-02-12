@@ -6,6 +6,9 @@ import { Injectable } from '@angular/core';
 export class UrlConstant {
   constructor() {}
 
-  public readonly SERVER_PORT = 'http://localhost:8085/sample/';
+  // public readonly SERVER_PORT = 'http://localhost:8085/sample/';
+
+    public readonly SERVER_PORT = 'http://localhost:8083';
+
 
 }

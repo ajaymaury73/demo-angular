@@ -8,11 +8,20 @@ import { FormsModule } from '@angular/forms';
 import { UrlConstant } from './services/url-constant.service';
 import { DataService } from './services/data.service';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './header/header.component';
+import { SellerComponent } from './seller/seller.component';
+import { CommonPopupComponent } from './common-popup/common-popup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    StudentComponent
+    StudentComponent,
+    HomeComponent,
+    HeaderComponent,
+    SellerComponent,
+    CommonPopupComponent,
+    
   ],
   imports: [
     BrowserModule,
